@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="card border-secondary mb-3" style="max-width: 30rem;">
+          <div class="card-header text-center"> Préstamo</div>
+          <div class="card-body">
+            <form>
+              <div>
+                <select class="form-select mt-4" id="exampleSelect1" formControlName="nombreCliente">
+                  <option value="">Seleccionar cliente</option>
+                  <option></option>
+                </select>
+                <select class="form-select mt-4" id="exampleSelect2" formControlName="monto">
+                  <option value="">Seleccionar monto</option>
+                  <option></option>
+                </select>
+                <select class="form-select mt-4" id="exampleSelect3" formControlName="plazo">
+                  <option value="">Seleccionar plazo</option>
+                  <option></option>
+                </select>
+              </div>
+              <div class="row mt-2 text-center">
+                <div class="col-lg-6">
+                  <button type="button" class="btn btn-info btn-sm mt-4" routerLink="/">Agregar</button>
+                </div>
+                <div class="col-lg-6">
+                  <button routerLink="/" type="button" class="btn btn-secondary btn-sm mt-4">Volver</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

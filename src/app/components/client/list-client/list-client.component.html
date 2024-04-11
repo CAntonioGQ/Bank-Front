@@ -1,0 +1,27 @@
+
+<div *ngIf="!loading" class="container">
+  <div class="title">
+    <h4>Clientes</h4>
+    <button type="button" class="btn btn-primary" routerLink="/addCliente">Crear Cliente</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nombre de Cliente </th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listClients">
+        <td>{{ item.nombreCliente }}</td>
+        <td>
+          <button type="button" class="btn btn-info btn-sm ms-2">Editar</button>
+          <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+    
+    
+    
+  </table>
+</div>
