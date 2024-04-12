@@ -1,28 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { Amount } from 'src/app/interfaces/amount';
-import { AmountService } from 'src/app/services/amount.service';
+import { HttpClient } from '@angular/common/http';
+
+
+interface Amount {
+  idMontos: number;
+  montos: number;
+}
 
 @Component({
   selector: 'app-list-amounts',
   templateUrl: './list-amounts.component.html',
   styleUrls: ['./list-amounts.component.css']
 })
+export class ListAmountsComponent implements OnInit {
+  amounts: Amount[] = [];
+  loading: boolean = false;
 
-export class ListAmountsComponent implements OnInit{
+  constructor(private http: HttpClient) { }
 
-  listAmounts: Amount[]=[]
+  ngOnInit() {
+    this.getAmounts();
+  }
 
+  getAmounts() {
+    this.http.get<{ montos: Amount[] }>('http://localhost:8000/api/montos/')
+      .subscribe(
+        response => {
+          this.amounts = response.montos;
+        },
+        error => {
+          console.error('Error al obtener la lista de montos:', error);
+        }
+      );
+  }
 
-constructor(private _AmountService: AmountService) {}
-
-
-ngOnInit(): void {
-  this.getListAmounts()
-}
-
-getListAmounts(){
-  this._AmountService.getListAmounts().subscribe((data)=>{
-    console.log(data)
-  })
-}
+  deleteAmount(id: number) {
+    this.http.delete(`http://localhost:8000/api/montos/${id}`)
+      .subscribe(
+        () => {
+          this.getAmounts();
+        },
+        error => {
+          console.error('Error al eliminar el monto:', error);
+        }
+      );
+  }
 }

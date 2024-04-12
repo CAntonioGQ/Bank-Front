@@ -1,31 +1,23 @@
-<!-- <app-progress-bar *ngIf="loading"></app-progress-bar> -->
 <div class="container">
-    <div class="title">
-      <h4>Plazos</h4>
-      <button type="button" class="btn btn-primary" routerLink="/addPlazos">Crear Plazo</button>
-    </div>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Plazo</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Quincenal</td>
-          <td>
-            <button type="button" class="btn btn-info btn-sm ms-2">Editar</button>
-            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Mensual</td>
-          <td>
-            <button type="button" class="btn btn-info btn-sm ms-2">Editar</button>
-            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-   </div>
+  <div class="title">
+    <h4>Plazos</h4>
+    <button type="button" class="btn btn-primary" routerLink="/addPlazos">Crear Plazo</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Plazo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.plazos }}</td>
+        <td>
+          <button routerLink="/editPlazos/{{ payment.idPlazos }}" type="button" class="btn btn-info btn-sm ms-2">Edit</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deletePayment(payment.idPlazos)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -15,6 +15,7 @@ import { AddEditPaymentComponent } from './components/payment/add-edit-payment/a
 
 import { HttpClientModule} from '@angular/common/http'
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

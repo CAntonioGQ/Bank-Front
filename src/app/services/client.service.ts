@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../interfaces/client';
 
@@ -7,17 +7,21 @@ import { Client } from '../interfaces/client';
   providedIn: 'root'
 })
 export class ClientService {
+  constructor(private http: HttpClient) { }
 
-  private myAppUrl: string
-  private myApiUrl: string
-
-  constructor(private http:HttpClient) { 
-    this.myAppUrl = 'http://localhost:8000/'
-    this.myApiUrl = 'api/clientes/'
+  getClient(id: number): Observable<Client> {
+    return this.http.get<Client>(`http://localhost:8000/api/clientes/${id}`);
   }
 
+  saveClient(client: Client): Observable<any> {
+    return this.http.post<any>('http://localhost:8000/api/clientes/', client);
+  }
 
-  getListClients(): Observable<Client[]>{
-    return this.http.get<Client[]>(this.myAppUrl + this.myApiUrl)
+  updateClient(id: number, client: Client): Observable<any> {
+    return this.http.put<any>(`http://localhost:8000/api/clientes/${id}`, client);
+  }
+
+  deleteClient(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8000/api/clientes/${id}`);
   }
 }

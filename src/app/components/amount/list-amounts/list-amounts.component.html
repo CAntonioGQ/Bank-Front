@@ -1,31 +1,23 @@
-<!-- <app-progress-bar *ngIf="loading"></app-progress-bar> -->
 <div class="container">
-    <div class="title">
-      <h4>Montos</h4>
-      <button type="button" class="btn btn-primary" routerLink="/addMontos">Crear Monto</button>
-    </div>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Montos</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1000</td>
-          <td>
-            <button type="button" class="btn btn-info btn-sm ms-2">Editar</button>
-            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-          </td>
-        </tr>
-        <tr *ngFor="let item of listAmounts">
-          <td>{{ item.montos }}</td>
-          <td>
-            <button type="button" class="btn btn-info btn-sm ms-2">Editar</button>
-            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-   </div>
+  <div class="title">
+    <h4>Montos</h4>
+    <button type="button" class="btn btn-primary" routerLink="/addMontos">Crear Monto</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Montos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let amount of amounts">
+        <td>{{ amount.montos }}</td>
+        <td>
+          <button routerLink="/editMontos/{{ amount.idMontos }}" type="button" class="btn btn-info btn-sm ms-2">Edit</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteAmount(amount.idMontos)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

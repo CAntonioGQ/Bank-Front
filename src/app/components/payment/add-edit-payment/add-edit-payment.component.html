@@ -1,28 +1,27 @@
 <div class="container mt-4">
-    <div class="row justify-content-center">
-      <div class="col-lg-4">
-        <div class="card border-secondary mb-3" style="max-width: 30rem;">
-          <div class="card-header text-center"> Crear Plazo </div>
-          <div class="card-body">
-            <form>
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <div class="card border-secondary mb-3" style="max-width: 30rem;">
+        <div class="card-header text-center">{{ operacion }}Plazos</div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="addPayment()">
+            <div>
               <div>
-                <div>
-                    <label for="exampleInputEmail1" class="form-label mt-4">Escribe el Plazo</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Plazo">
-                </div>
-               
+                <label for="plazos" class="form-label mt-4">Escribe el Plazo</label>
+                <input type="text" class="form-control" id="plazos" formControlName="plazos" placeholder="Plazo">
               </div>
-              <div class="row mt-2 text-center">
-                <div class="col-lg-6">
-                  <button type="button" class="btn btn-info btn-sm mt-4" routerLink="/plazos">Agregar</button>
-                </div>
-                <div class="col-lg-6">
-                  <button routerLink="clientes" type="button" class="btn btn-secondary btn-sm mt-4">Volver</button>
-                </div>
+            </div>
+            <div class="row mt-2 text-center">
+              <div class="col-lg-6">
+                <button type="submit" class="btn btn-info btn-sm mt-4">{{ operacion }}</button>
               </div>
-            </form>
-          </div>
+              <div class="col-lg-6">
+                <button routerLink="/plazos" type="button" class="btn btn-secondary btn-sm mt-4">Volver</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>

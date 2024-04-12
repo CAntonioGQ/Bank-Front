@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Client } from 'src/app/interfaces/client';
-import { ClientService } from 'src/app/services/client.service';
+import { HttpClient } from '@angular/common/http';
+
+interface Client {
+  idClientes: number;
+  nombreCliente: string;
+}
 
 @Component({
   selector: 'app-list-client',
@@ -11,23 +15,33 @@ export class ListClientComponent implements OnInit {
   listClients: Client[] = [];
   loading: boolean = false;
 
-  constructor(private clientService: ClientService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getListClients();
   }
 
   getListClients() {
-    this.loading = true;
-    this.clientService.getListClients().subscribe(
-      clients => {
-        this.listClients = clients; // Asignamos directamente el array de clientes
-        this.loading = false;
-      },
-      error => {
-        console.error('Error al obtener la lista de clientes:', error);
-        this.loading = false;
-      }
-    );
+    this.http.get<{ clientes: Client[] }>('http://localhost:8000/api/clientes/')
+      .subscribe(
+        response => {
+          this.listClients = response.clientes;
+        },
+        error => {
+          console.error('Error al obtener la lista de clientes:', error);
+        }
+      );
+  }
+
+  deleteClient(id: number) {
+    this.http.delete(`http://localhost:8000/api/clientes/${id}`)
+      .subscribe(
+        () => {
+          this.getListClients();
+        },
+        error => {
+          console.error('Error al eliminar el cliente:', error);
+        }
+      );
   }
 }
