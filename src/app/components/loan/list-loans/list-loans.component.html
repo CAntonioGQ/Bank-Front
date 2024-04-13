@@ -1,28 +1,31 @@
+<div *ngIf="loading" class="container">
+  <!-- Aquí puedes agregar un spinner o un mensaje de carga -->
+</div>
 
-<div class="container">
-    <div class="title">
-        <h4>Prestamo Cliente</h4>
-        <button type="button" class="btn btn-primary" routerLink="/add">Crear Prestamo</button>
-    </div>
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Monto</th>
-            <th>Plazo</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <button  type="button" class="btn btn-info btn-sm ms-2">Editar</button>
-                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<div *ngIf="!loading" class="container">
+  <div class="title">
+    <h4>Prestamo Cliente</h4>
+    <button type="button" class="btn btn-primary" routerLink="/add">Crear Prestamo</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Monto</th>
+        <th>Plazo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listLoans">
+        <td>{{ item.nombreCliente }}</td>
+        <td>{{ item.montos }}</td>
+        <td>{{ item.plazos }}</td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm ms-2" (click)="deleteLoan(item.id_rel)">Eliminar</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="goToAmortization(item.id_rel)">Amortizacion</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

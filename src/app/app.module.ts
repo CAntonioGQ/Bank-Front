@@ -16,6 +16,7 @@ import { AddEditPaymentComponent } from './components/payment/add-edit-payment/a
 import { HttpClientModule} from '@angular/common/http'
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AmortizationComponent } from './components/amortization/amortization.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddEditLoanComponent,
     NavbarComponent,
     ListPaymentComponent,
-    AddEditPaymentComponent
+    AddEditPaymentComponent,
+    AmortizationComponent
   ],
   imports: [
     BrowserModule,

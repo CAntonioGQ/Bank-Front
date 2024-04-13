@@ -1,0 +1,32 @@
+<table class="table table-hover">
+    <thead>
+      <p>Cliente: {{ selectedLoan?.nombreCliente }}</p>
+      <p>Quincenas: {{ selectedLoan?.plazos }}</p>
+      <p>Interés: 11% FIJO</p>
+      <tr>
+        <th scope="col">No. Pago</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Prestamo</th>
+        <th scope="col">Interes</th>
+        <th scope="col">Abono</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="selectedLoan && selectedLoan.montos && isNumber(+selectedLoan.plazos)">
+        <tr class="table-secondary" *ngFor="let fecha of plazosArray; let i = index">
+          <th>{{ i + 1 }}</th>
+          <td>{{ fecha }}</td>
+          <td>${{ selectedLoan.montos / +selectedLoan.plazos | number:'1.2-2' }}</td>
+          <td>${{ selectedLoan.montos * .11 | number:'1.2-2'}}</td>
+          <td>${{ selectedLoan.montos / +selectedLoan.plazos + +interes | number:'1.2-2'}}</td>
+        </tr>
+      </ng-container>
+      <tr class="table-primary" *ngIf="selectedLoan && selectedLoan.montos && isNumber(+selectedLoan.plazos)">
+        <td></td>
+        <td>Totales</td>
+        <td>${{ selectedLoan.montos | number:'1.2-2' }}</td>
+        <td>${{ selectedLoan && interes * +selectedLoan.plazos | number:'1.2-2'}}</td>
+        <td>${{ selectedLoan.montos + interes * +selectedLoan.plazos | number:'1.2-2'}}</td>
+      </tr>
+    </tbody>
+  </table>

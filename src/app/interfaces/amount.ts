@@ -1,4 +1,4 @@
 export interface Amount {
     idMontos?: number,
-    montos: string,
+    montos: number,
 }
